@@ -19,7 +19,7 @@ const questions = [{
         'Delete employee',
         'Delete role',
         'Delete department',
-       
+        new inquirer.Separator(),
     ],
     pageSize: 28
    
