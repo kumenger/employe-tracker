@@ -22,7 +22,7 @@ const showData= async ()=>{
          if(todo==='View all employees'){
             return new Promise((resolve, reject) => {
                
-                db.query('select * from employe',(err,res)=>{
+                db.query('select * from employe INNER JOIN roles ON roles.role_name=employe.role_name;',(err,res)=>{
                     if(err){return reject(err)}
                   console.log('\n');
                   console.table(res)
@@ -36,7 +36,7 @@ const showData= async ()=>{
         
          else if(todo==='View all roles'){
             return new Promise((resolve,reject)=>{
-                  db.query('select * from roles',(err,res)=>{
+                  db.query('select * from roles INNER JOIN departments ON departments.dep_name=roles.dep_name',(err,res)=>{
                     if(err){return reject(err)}
                 console.log('\n');
               console.table(res)
@@ -72,6 +72,7 @@ const showData= async ()=>{
                 //console.log(departmetName)
                 return new Promise((resolve, reject) => {
                     
+
                     db.query(`INSERT INTO departments (dep_name) 
                     values ("${departmetName}")`,(err,res)=>{
                         if(err){return reject(err)}
