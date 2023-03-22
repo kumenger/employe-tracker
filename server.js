@@ -201,6 +201,10 @@ const showData = async () => {
                    
                    `,(err,res)=>{
                     if(err){console.log(err)}
+                    console.log("\n");
+                   
+                    console.table(res);
+                    showData();
                    })
                 })
 
