@@ -1,6 +1,6 @@
 
 const inquirer = require("inquirer");
-const questions=require('./helpers/questions')
+const {questions,addDepartment}=require('./helpers/questions')
 const cTable = require('console.table');
 const mysql = require('mysql2');
 require('dotenv').config()
@@ -33,9 +33,7 @@ const showData= async ()=>{
             }).then(()=>showData())
            
          }
-         else if(todo==='View employees by manager'){
-             console.log('show all employe by manger')
-         }
+        
          else if(todo==='View all roles'){
             return new Promise((resolve,reject)=>{
                   db.query('select * from roles',(err,res)=>{
@@ -69,7 +67,21 @@ const showData= async ()=>{
              console.log('Add role')
          }
          else if(todo==='Add department'){
-             console.log('Add department')
+             inquirer.prompt(addDepartment).then((depAnswer)=>{
+                let departmetName=depAnswer.depName
+                //console.log(departmetName)
+                return new Promise((resolve, reject) => {
+                    
+                    db.query(`INSERT INTO departments (dep_name) 
+                    values ("${departmetName}")`,(err,res)=>{
+                        if(err){return reject(err)}
+                        console.log('\n');
+                        console.table(res)
+                        resolve(res)
+                    })
+                }).then(()=>showData())
+
+            })
          }
          else if(todo==='Update employee'){
              console.log('Update employee')

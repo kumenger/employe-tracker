@@ -6,7 +6,6 @@ const questions = [{
     choices: [
      new inquirer.Separator(),
         'View all employees',
-        'View employees by manager',
         'View all roles',
         'View all departments',
        new inquirer.Separator(),
@@ -24,4 +23,9 @@ const questions = [{
     pageSize: 28
    
 }];
-module.exports=questions
+const addDepartment=[{
+    type:"input",
+    name:"depName",
+    message:"What is the Name of Department?"
+}]
+module.exports={questions,addDepartment}
