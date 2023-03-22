@@ -13,7 +13,7 @@ const questions = [{
         'Add role',
         'Add department',
         new inquirer.Separator(),
-        'Update employee',
+        'Update employee role',
         new inquirer.Separator(),
         'Delete employee',
         'Delete role',
@@ -28,4 +28,5 @@ const addDepartment=[{
     name:"depName",
     message:"What is the Name of Department?"
 }]
+
 module.exports={questions,addDepartment}

@@ -12,7 +12,7 @@ CREATE TABLE roles (
   role_name VARCHAR(30) NOT NULL,
   dep_name VARCHAR(30),
   FOREIGN KEY(dep_name) REFERENCES departments(dep_id)
-  salary INT 
+  salary INT NOT null
 );
 
 CREATE TABLE employe (
