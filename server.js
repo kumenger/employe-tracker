@@ -10,9 +10,7 @@ require('dotenv').config()
 const db = mysql.createConnection(
   {
     host:'localhost',
-    // MySQL Username
     user:process.env.DB_USER,
-    // TODO: Add MySQL Password
     password:process.env.DB_PASSWORD,
     database:process.env.DB_NAME
   },
@@ -22,21 +20,47 @@ const showData= async ()=>{
     await inquirer.prompt(questions).then((answer)=>{
          const todo=answer.task
          if(todo==='View all employees'){
-            db.query('select * from employe',(err,res)=>{
-                console.log('\n');
-              console.table(res)
+            return new Promise((resolve, reject) => {
+               
+                db.query('select * from employe',(err,res)=>{
+                    if(err){return reject(err)}
+                  console.log('\n');
+                  console.table(res)
+                  resolve(res)
+                 
+                })
              
-            })
-         showData()
+            }).then(()=>showData())
+           
          }
          else if(todo==='View employees by manager'){
              console.log('show all employe by manger')
          }
          else if(todo==='View all roles'){
-             console.log('View all roles')
+            return new Promise((resolve,reject)=>{
+                  db.query('select * from roles',(err,res)=>{
+                    if(err){return reject(err)}
+                console.log('\n');
+              console.table(res)
+              resolve(res)
+             
+            })
+            }).then(()=>showData())
+          
+        
          }
          else if(todo==='View all departments'){
-             console.log('View all departments')
+            return new Promise((resolve,reject)=>{
+                db.query('select * from departments',(err,res)=>{
+                    if(err){return reject(err)}
+                console.log('\n');
+              console.table(res)
+              resolve(res)
+            })
+            
+             
+            }).then(()=>showData())
+       
          }
          else if(todo==='Add employee'){
              console.log('Add employee')
