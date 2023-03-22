@@ -13,7 +13,7 @@ const questions = [{
         'Add role',
         'Add department',
         new inquirer.Separator(),
-        'Update employee',
+        'Update employee role',
         new inquirer.Separator(),
         'Delete employee',
         'Delete role',
