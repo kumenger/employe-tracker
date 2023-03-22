@@ -195,8 +195,8 @@ const showData = async () => {
                     dataName.role_name=datarole.role_name
                    db.query(`
                    UPDATE employe 
-   -> SET role_name = "${dataName.role_name}"
-   -> WHERE first_name = "${dataName.first_name}"
+   SET role_name = "${dataName.role_name}"
+    WHERE first_name = "${dataName.first_name}"
                    
                    
                    `,(err,res)=>{
