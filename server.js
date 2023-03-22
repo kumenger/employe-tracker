@@ -43,6 +43,7 @@ const showData = async () => {
                 console.log(err);
               }
               console.log("\n");
+              console.log(res)
               console.table(res);
               showData();
             }
@@ -55,6 +56,7 @@ const showData = async () => {
               console.log(err);
             }
             console.log("\n");
+            
             console.table(res);
             showData();
           });
@@ -62,7 +64,45 @@ const showData = async () => {
       } else if (todo === "Add employee") {
         console.log("Add employee");
       } else if (todo === "Add role") {
-        console.log("Add role");
+        db.query('select * from departments',(err,res)=>{
+            if(err){console.log(err)}
+            let myarr=[]
+            res.forEach(element => {
+                myarr.push(element.dep_name)
+            });
+            console.log(myarr)
+            inquirer.prompt([{
+                type:"input",
+                name:"role_name",
+                message:"What is the Name of role?"
+            },{
+                type:"list",
+                name:"dep_name",
+                message:"What department this role belong to ?",
+                choices:myarr
+            },{
+                type:"input",
+                name:"salary",
+                message:"what is the salary of this role will be ?",
+              
+            }]).then((data)=>{
+
+                db.query(
+ `INSERT INTO roles (${Object.keys(data).join(",")}) 
+             values (${Object.values(data).map((x)=>`"${x}"`).join(",")})`,
+                  (err, res) => {
+                    if (err) {
+                      console.log(err);
+                    }
+                    console.log("\n");
+                    console.table(res);
+                    showData();
+                  }
+                )
+
+            })
+
+        })
       } else if (todo === "Add department") {
         inquirer.prompt(addDepartment).then((depAnswer) => {
           let departmetName = depAnswer.depName;

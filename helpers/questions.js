@@ -28,4 +28,5 @@ const addDepartment=[{
     name:"depName",
     message:"What is the Name of Department?"
 }]
+
 module.exports={questions,addDepartment}
