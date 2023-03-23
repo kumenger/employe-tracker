@@ -43,7 +43,7 @@ const showData = async () => {
                 console.log(err);
               }
               console.log("\n");
-              console.log(res)
+             
               console.table(res);
               showData();
             }

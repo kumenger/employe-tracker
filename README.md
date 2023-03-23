@@ -56,7 +56,7 @@ this project is developed using  a Node.js command-line application,  JavaScript
 
 ## Link to Full Video
 
-[Link to view Full Video of Application](https://drive.google.com/file/d/16J2H-QGU83Wb0pAuEoJmqVFX2z0ass7h/view)
+[Link to view Full Video of Application](https://drive.google.com/file/d/16WuPHHWTrKzKzxQuVxSYaC-2FejKLkP_/view)
 
 ***
 
@@ -84,12 +84,11 @@ Navigate using the keyboard arrow keys to make your selections and updates.
 ***
 
 
-
 ## Questions
 
 If you have any questions about the repo you can open an issue.
 
-You can find more of my work at [Github](https://github.com/kumenger/employe-tracker)
+You can contact me [Gmail](kumeprog@gmail.com)
 
 ***
 
