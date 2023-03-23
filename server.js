@@ -210,18 +210,7 @@ const showData = async () => {
 
               })
               
-            //     db.query(
-            // `INSERT INTO roles (${Object.keys(data).join(",")}) 
-            //  values (${Object.values(data).map((x)=>`"${x}"`).join(",")})`,
-            //       (err, res) => {
-            //         if (err) {
-            //           console.log(err);
-            //         }
-            //         console.log("\n");
-            //         console.table(res);
-            //         showData();
-            //       }
-            //     )
+      
 
             })
 
