@@ -250,7 +250,35 @@ const showData = async () => {
       }  else if (todo === "delete role") {
         console.log("delete role");
       } else if (todo === "View total utilized budget by department") {
-        console.log("delete role");
+        db.query("select * from employe INNER JOIN roles ON roles.role_name=employe.role_name;" ,(err,resMain)=>{
+          if(err){return err}
+          let departmentname=[]
+          resMain.forEach((elem)=>{
+            departmentname.push(elem.dep_name)
+          })
+         // console.log(res)
+        inquirer.prompt([{
+         type:"list",
+         name:"dep_name",
+         choices:departmentname,
+         message:"which department's consumed budget to look for "
+        }]).then((dataHere)=>
+           {
+          
+             let daptmentFilters= resMain.filter(elm=>elm.dep_name===dataHere.dep_name)
+        
+           
+             
+             sumBudgets= daptmentFilters.reduce((x,y)=>x+y)
+             //: daptmentFilters.map(x=>x.salary).join()
+             console.log('\n')
+            
+             console.log(red(`The total budget consumed by ${dataHere.dep_name} department is  ${sumBudgets} $`))
+             showData()
+            }
+         
+        )
+        })
       } else {
         process.exit();
       }
