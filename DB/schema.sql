@@ -12,7 +12,7 @@ CREATE TABLE roles (
   role_name VARCHAR(30) NOT NULL,
   dep_name VARCHAR(30),
   FOREIGN KEY(dep_name) REFERENCES departments(dep_id)
-  salary INT NOT null
+  salary DECIMAL NOT null
 );
 
 CREATE TABLE employe (
@@ -21,7 +21,11 @@ CREATE TABLE employe (
   last_name VARCHAR(30) NOT NULL,
   role_name VARCHAR(30),
   FOREIGN KEY(role_name) REFERENCES roles(role_id)
-  manager_name VARCHAR(30) NOT NULL
+  manager_name VARCHAR(30) 
    
 );
+
+         ,(err,res)=>{
+                   
+                
 

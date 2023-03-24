@@ -14,10 +14,11 @@ const questions = [{
         'Add department',
         new inquirer.Separator(),
         'Update employee role',
+        "Update employe manager",
         new inquirer.Separator(),
-        'Delete employee',
         'Delete role',
-        'Delete department',
+        new inquirer.Separator(),
+        'View total utilized budget by department',
         new inquirer.Separator(),
     ],
     pageSize: 28
