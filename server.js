@@ -3,7 +3,7 @@ const { questions, addDepartment } = require("./helpers/questions");
 const cTable = require("console.table");
 const mysql = require("mysql2");
 require("dotenv").config();
-
+const { color, log, red, green, cyan, cyanBright } = require('console-log-colors');
 // Connect to database
 const db = mysql.createConnection(
   {
@@ -98,7 +98,7 @@ const showData = async () => {
                       console.log(err);
                     }
                     console.log("\n");
-                    console.table(res);
+                    console.log(red(`${data.first_name} employe is added to database `));
                     showData();
                   }
                 )
@@ -138,7 +138,7 @@ const showData = async () => {
                       console.log(err);
                     }
                     console.log("\n");
-                    console.table(res);
+                    console.table(red(`${data.role_name} role is added to database `));
                     showData();
                   }
                 )
@@ -158,7 +158,7 @@ const showData = async () => {
                   console.log(err);
                 }
                 console.log("\n");
-                console.table(res);
+                console.table(red(`${departmetName} department is added to database `));
                 showData();
               }
             );
@@ -203,7 +203,7 @@ const showData = async () => {
                     if(err){console.log(err)}
                     console.log("\n");
                    
-                    console.table(res);
+                    console.table(red(`${dataName.first_name}'s role is changed to ${dataName.role_name}`));
                     showData();
                    })
                 })
@@ -215,11 +215,41 @@ const showData = async () => {
             })
 
         })
-      } else if (todo === "Delete employee") {
-        console.log("Delete employee");
-      } else if (todo === "Delete department") {
-        console.log("Delete department");
-      } else if (todo === "delete role") {
+      } else if (todo === "Update employe manager") {
+       db.query(`select * from employe `,(err,res)=>{
+        if(err){return err}
+       
+        let myfirstNameholder=[];
+        res.forEach((elem)=>{
+        
+          myfirstNameholder.push(elem.first_name)
+        })
+       inquirer.prompt([{
+        type:"list",
+        name: "first_name",
+        message:'which employe to change manager',
+        choices:myfirstNameholder
+       },{
+        type:'input',
+        name: 'manager_name',
+        message:'what will be the new manager name',
+       }]).then((data)=>{
+       db.query(`UPDATE employe 
+       SET manager_name = "${data.manager_name}"
+        WHERE first_name = "${data.first_name}" `,(err,res)=>{
+                        if(err){console.log(err)}
+                        console.log("\n");
+                     console.table(red(` ${data.first_name}'s manager successfully changed to ${data.manager_name}`));
+                        showData();
+
+       })
+       }
+       )
+      
+       })
+      }  else if (todo === "delete role") {
+        console.log("delete role");
+      } else if (todo === "View total utilized budget by department") {
         console.log("delete role");
       } else {
         process.exit();
