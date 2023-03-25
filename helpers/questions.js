@@ -15,8 +15,8 @@ const questions = [{
         new inquirer.Separator(),
         'Update employee role',
         "Update employe manager",
-        new inquirer.Separator(),
-        'Delete role',
+        
+       
         new inquirer.Separator(),
         'View total utilized budget by department',
         new inquirer.Separator(),

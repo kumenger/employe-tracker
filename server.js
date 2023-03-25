@@ -247,13 +247,7 @@ const showData = async () => {
        )
       
        })
-      }  else if (todo === "Delete role") {
-         db.query('SELECT sum(b.salary) FROM departments a INNER JOIN roles b ON b.dep_name = a.dep_id WHERE a.dep_name="Cyber Security"',(err,res)=>{
-       if(err){return console.log(err)}
-          console.log(res)
-          //ON b.dep_name = a.dep_id
-      })
-      } else if (todo === "View total utilized budget by department") {
+      }   else if (todo === "View total utilized budget by department") {
         db.query("select * from employe INNER JOIN roles ON roles.role_name=employe.role_name;" ,(err,resMain)=>{
           if(err){return err}
           let departmentname=[]
