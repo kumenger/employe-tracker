@@ -247,8 +247,12 @@ const showData = async () => {
        )
       
        })
-      }  else if (todo === "delete role") {
-        console.log("delete role");
+      }  else if (todo === "Delete role") {
+         db.query('SELECT sum(b.salary) FROM departments a INNER JOIN roles b ON b.dep_name = a.dep_id WHERE a.dep_name="Cyber Security"',(err,res)=>{
+       if(err){return console.log(err)}
+          console.log(res)
+          //ON b.dep_name = a.dep_id
+      })
       } else if (todo === "View total utilized budget by department") {
         db.query("select * from employe INNER JOIN roles ON roles.role_name=employe.role_name;" ,(err,resMain)=>{
           if(err){return err}
@@ -261,22 +265,19 @@ const showData = async () => {
          type:"list",
          name:"dep_name",
          choices:departmentname,
-         message:"which department's consumed budget to look for "
+         message:"Select which department's consumed budget to look for ?"
         }]).then((dataHere)=>
            {
           
-             let daptmentFilters= resMain.filter(elm=>elm.dep_name===dataHere.dep_name)
         
-           
-             
-             sumBudgets= daptmentFilters.reduce((x,y)=>x+y)
-             //: daptmentFilters.map(x=>x.salary).join()
-             console.log('\n')
             
-             console.log(red(`The total budget consumed by ${dataHere.dep_name} department is  ${sumBudgets} $`))
+       db.query(`select  sum(roles.salary) as total from employe INNER JOIN roles ON roles.role_name=employe.role_name where roles.dep_name='${dataHere.dep_name}' `,(err,res)=>{
+             if(err){return console.log(err)}
+             console.log(res[0].total)
+             console.log(red(`the total budget consumed by ${dataHere.dep_name} is ${res[0].total}` ))
              showData()
-            }
-         
+            })
+          }
         )
         })
       } else {

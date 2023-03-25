@@ -25,7 +25,13 @@ CREATE TABLE employe (
    
 );
 
-         ,(err,res)=>{
-                   
+  
+    SELECT sum(b.salary)
+FROM departments a 
+INNER JOIN roles b
+ON b.dep_name = a.dep_id
+WHERE a.dep_name='Cyber Security'
+
+               
                 
 
